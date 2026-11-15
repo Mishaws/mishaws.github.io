@@ -50,6 +50,30 @@ body {
   background-size: 36px 36px;
 }
 
+/* --- Packet Bus / Signal Flow Animation --- */
+.packet-flow {
+  animation: packet-dash 1.6s linear infinite;
+}
+
+@keyframes packet-dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+.marquee-strip {
+  animation: strip-scroll 28s linear infinite;
+}
+
+@keyframes strip-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 /* --- Modern Neo-Brutalist Surfaces & Karina-style Tactile Buttons --- */
 .brutal-box {
   background: var(--bg-card);

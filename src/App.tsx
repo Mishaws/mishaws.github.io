@@ -1,6 +1,16 @@
 import { useEffect, useState, type ReactNode } from "react";
+import { BlueprintBackdrop } from "./components/BlueprintBackdrop";
 import { CertificateCarousel } from "./components/CertificateCarousel";
+import { NetworkTelemetryCard } from "./components/NetworkTelemetryCard";
 import { Preloader } from "./components/Preloader";
+import {
+  IconAiChip,
+  IconAward,
+  IconGlobe,
+  IconNetwork,
+  IconRadio,
+  IconTerminal,
+} from "./components/TechIcons";
 import {
   EDUCATION_TIMELINE,
   EXPERIENCE_TIMELINE,
@@ -25,6 +35,43 @@ const PROJECT_FILTERS: { key: ProjectCategory; label: string }[] = [
   { key: "ai-systems", label: "AI & Hardware" },
   { key: "software", label: "Software & Web" },
 ];
+
+const PROTOCOL_STRIP = [
+  "NETWORK INFRASTRUCTURE",
+  "//",
+  "CISCO CCNA · OSPF · VLAN · DHCP",
+  "//",
+  "TELECOMMUNICATION SYSTEMS",
+  "//",
+  "PYTORCH · EFFICIENTNET · LLMS",
+  "//",
+  "VHDL · XILINX VIVADO",
+  "//",
+  "REACT · NODE.JS · POSTGRESQL",
+  "//",
+];
+
+function getProjectIcon(badge: string) {
+  switch (badge) {
+    case "Networks":
+      return <IconNetwork className="h-3.5 w-3.5" />;
+    case "Competition":
+      return <IconRadio className="h-3.5 w-3.5" />;
+    case "AI & ML":
+    case "Hardware":
+      return <IconAiChip className="h-3.5 w-3.5" />;
+    case "Industry":
+      return <IconGlobe className="h-3.5 w-3.5" />;
+    default:
+      return <IconTerminal className="h-3.5 w-3.5" />;
+  }
+}
+
+function getSkillIcon(group: string) {
+  if (group === "Networking") return <IconNetwork className="h-4 w-4 text-[var(--navy)]" />;
+  if (group.includes("Hardware")) return <IconAiChip className="h-4 w-4 text-[var(--navy)]" />;
+  return <IconTerminal className="h-4 w-4 text-[var(--navy)]" />;
+}
 
 function RevealBlock({
   children,
@@ -67,6 +114,8 @@ export function App() {
     filter === "all" ? true : p.category === filter
   );
 
+  const stripItems = [...PROTOCOL_STRIP, ...PROTOCOL_STRIP];
+
   return (
     <div className="min-h-screen bg-[var(--bg)] text-[var(--ink)]">
       <Preloader />
@@ -95,97 +144,77 @@ export function App() {
       </header>
 
       <main id="top" className="paper-grid">
-        {/* 01 // About & Hero (No top pill badge, blue name, sharp brutalist UI, clean single-col or balanced layout) */}
+        {/* 01 // About & Hero with CAD/RF Blueprint Backdrop & Live Telemetry Node Card */}
         <section
           id="about"
-          className="mx-auto max-w-5xl border-b-2 border-[var(--ink)] px-6 py-16 md:py-24"
+          className="relative overflow-hidden border-b-2 border-[var(--ink)]"
         >
-          <div className="grid items-start gap-10 md:grid-cols-12">
-            <div className="md:col-span-8">
-              <h1 className="font-display text-5xl font-extrabold leading-[0.98] tracking-tight md:text-7xl">
-                Hi, I&apos;m{" "}
-                <span className="text-[var(--blue-name)]">{PROFILE.fullName}</span>.
-              </h1>
-              <p className="mt-4 font-display text-xl font-bold tracking-tight text-[var(--ink-dim)] md:text-2xl">
-                Interested in artificial intelligence and network infrastructure.
-              </p>
+          <BlueprintBackdrop />
+          <div className="relative z-10 mx-auto max-w-5xl px-6 py-16 md:py-24">
+            <div className="grid items-start gap-10 md:grid-cols-12">
+              <div className="md:col-span-8">
+                <h1 className="font-display text-5xl font-extrabold leading-[0.98] tracking-tight md:text-7xl">
+                  Hi, I&apos;m{" "}
+                  <span className="text-[var(--blue-name)]">{PROFILE.fullName}</span>.
+                </h1>
+                <p className="mt-4 font-display text-xl font-bold tracking-tight text-[var(--ink-dim)] md:text-2xl">
+                  Interested in artificial intelligence and network infrastructure.
+                </p>
 
-              <p className="mt-6 max-w-2xl text-base font-medium leading-relaxed text-[var(--ink-dim)] md:text-lg">
-                I&apos;m a Computer Engineering student at Universitas Indonesia who genuinely
-                enjoys learning how things stay connected behind the scenes—and how software can
-                make them smarter. Most of my curiosity sits at the intersection of{" "}
-                <strong className="font-bold text-[var(--ink)]">artificial intelligence</strong>{" "}
-                and{" "}
-                <strong className="font-bold text-[var(--ink)]">network infrastructure</strong>,
-                because I love seeing how real systems communicate, scale, and adapt. Outside of
-                coursework, I spend my time joining engineering competitions, going on
-                international learning sprints, shipping side projects with friends, and picking up
-                new ideas wherever curiosity takes me.
-              </p>
+                <p className="mt-6 max-w-2xl text-base font-medium leading-relaxed text-[var(--ink-dim)] md:text-lg">
+                  I&apos;m a Computer Engineering student at Universitas Indonesia who genuinely
+                  enjoys learning how things stay connected behind the scenes—and how software can
+                  make them smarter. Most of my curiosity sits at the intersection of{" "}
+                  <strong className="font-bold text-[var(--ink)]">artificial intelligence</strong>{" "}
+                  and{" "}
+                  <strong className="font-bold text-[var(--ink)]">network infrastructure</strong>,
+                  because I love seeing how real systems communicate, scale, and adapt. Outside of
+                  coursework, I spend my time joining engineering competitions, going on
+                  international learning sprints, shipping side projects with friends, and picking up
+                  new ideas wherever curiosity takes me.
+                </p>
 
-              <div className="mt-9 flex flex-wrap gap-3.5">
-                <a
-                  href="#projects"
-                  className="brutal-btn bg-[var(--navy)] px-5 py-3 text-xs uppercase tracking-wider text-white hover:bg-[var(--navy-hover)]"
-                >
-                  Explore Projects ↓
-                </a>
-                <a
-                  href="#resume"
-                  className="brutal-btn bg-white px-5 py-3 text-xs uppercase tracking-wider text-[var(--ink)] hover:bg-[var(--navy-soft)]"
-                >
-                  View Resume
-                </a>
-                <a
-                  href={PROFILE.cvPath}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="brutal-btn bg-[var(--bg-alt)] px-5 py-3 text-xs uppercase tracking-wider text-[var(--ink)] hover:bg-white"
-                >
-                  CV PDF ↗
-                </a>
-              </div>
-            </div>
-
-            <aside className="md:col-span-4">
-              <div className="brutal-box p-6">
-                <div className="mb-4 border-b-2 border-[var(--ink)] pb-2">
-                  <p className="font-mono text-xs font-bold uppercase tracking-widest text-[var(--navy)]">
-                    // AT A GLANCE
-                  </p>
+                <div className="mt-9 flex flex-wrap gap-3.5">
+                  <a
+                    href="#projects"
+                    className="brutal-btn bg-[var(--navy)] px-5 py-3 text-xs uppercase tracking-wider text-white hover:bg-[var(--navy-hover)]"
+                  >
+                    Explore Projects ↓
+                  </a>
+                  <a
+                    href="#resume"
+                    className="brutal-btn bg-white px-5 py-3 text-xs uppercase tracking-wider text-[var(--ink)] hover:bg-[var(--navy-soft)]"
+                  >
+                    View Resume
+                  </a>
+                  <a
+                    href={PROFILE.cvPath}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="brutal-btn bg-[var(--bg-alt)] px-5 py-3 text-xs uppercase tracking-wider text-[var(--ink)] hover:bg-white"
+                  >
+                    CV PDF ↗
+                  </a>
                 </div>
-                <dl className="space-y-3 text-sm">
-                  <div className="border-b border-[var(--line)] pb-2.5">
-                    <dt className="font-mono text-[11px] font-bold uppercase text-[var(--ink-faint)]">
-                      University
-                    </dt>
-                    <dd className="mt-0.5 font-semibold text-[var(--ink)]">
-                      Universitas Indonesia · GPA {PROFILE.gpa}
-                    </dd>
-                  </div>
-                  <div className="border-b border-[var(--line)] pb-2.5">
-                    <dt className="font-mono text-[11px] font-bold uppercase text-[var(--ink-faint)]">
-                      Focus
-                    </dt>
-                    <dd className="mt-0.5 font-semibold text-[var(--ink)]">{PROFILE.interests}</dd>
-                  </div>
-                  <div className="border-b border-[var(--line)] pb-2.5">
-                    <dt className="font-mono text-[11px] font-bold uppercase text-[var(--ink-faint)]">
-                      Location
-                    </dt>
-                    <dd className="mt-0.5 font-semibold text-[var(--ink)]">{PROFILE.location}</dd>
-                  </div>
-                  <div>
-                    <dt className="font-mono text-[11px] font-bold uppercase text-[var(--ink-faint)]">
-                      Languages
-                    </dt>
-                    <dd className="mt-0.5 font-semibold text-[var(--ink)]">{PROFILE.languages}</dd>
-                  </div>
-                </dl>
               </div>
-            </aside>
+
+              <aside className="md:col-span-4">
+                <NetworkTelemetryCard />
+              </aside>
+            </div>
           </div>
         </section>
+
+        {/* Crisp Engineering Protocol Ticker Strip */}
+        <div className="overflow-hidden border-b-2 border-[var(--ink)] bg-[var(--navy)] py-3 text-white">
+          <div className="marquee-strip flex w-max gap-6 whitespace-nowrap font-mono text-xs font-bold uppercase tracking-[0.18em]">
+            {stripItems.map((item, i) => (
+              <span key={i} className={item === "//" ? "text-[#7dd3fc]" : ""}>
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
 
         {/* 02 // Resume Timeline */}
         <RevealBlock
@@ -203,7 +232,8 @@ export function App() {
           </div>
 
           <div className="brutal-box mt-10 p-6 md:p-10">
-            <h3 className="mb-8 font-mono text-xs font-bold uppercase tracking-widest text-[var(--navy)]">
+            <h3 className="mb-8 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-[var(--navy)]">
+              <IconRadio className="h-4 w-4" />
               Experience &amp; International Programs
             </h3>
             <div className="resume-timeline">
@@ -240,7 +270,8 @@ export function App() {
           </div>
 
           <div className="brutal-box mt-6 p-6 md:p-10">
-            <h3 className="mb-8 font-mono text-xs font-bold uppercase tracking-widest text-[var(--navy)]">
+            <h3 className="mb-8 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-[var(--navy)]">
+              <IconAward className="h-4 w-4" />
               Education
             </h3>
             <div className="resume-timeline">
@@ -267,7 +298,7 @@ export function App() {
           </div>
         </RevealBlock>
 
-        {/* 03 // Projects (Karina-style brutalist framed cards with sharp corners + Navy palette) */}
+        {/* 03 // Projects */}
         <RevealBlock
           id="projects"
           className="mx-auto max-w-5xl border-b-2 border-[var(--ink)] px-6 py-16 md:py-20"
@@ -305,7 +336,7 @@ export function App() {
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {visibleProjects.map((project) => (
+            {visibleProjects.map((project, idx) => (
               <article
                 key={project.title}
                 className="brutal-box brutal-box-hover flex h-full flex-col justify-between p-7"
@@ -313,9 +344,10 @@ export function App() {
                 <div>
                   <div className="mb-5 flex items-center justify-between gap-3">
                     <span className="font-mono text-xs font-bold text-[var(--ink-faint)]">
-                      {project.year}
+                      0{idx + 1} // {project.year}
                     </span>
-                    <span className="inline-flex items-center border-2 border-[var(--ink)] bg-[var(--navy)] px-3 py-0.5 font-mono text-[10px] font-bold uppercase tracking-widest text-white">
+                    <span className="inline-flex items-center gap-1.5 border-2 border-[var(--ink)] bg-[var(--navy)] px-3 py-0.5 font-mono text-[10px] font-bold uppercase tracking-widest text-white">
+                      {getProjectIcon(project.badge)}
                       {project.badge}
                     </span>
                   </div>
@@ -379,7 +411,8 @@ export function App() {
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {SKILLS.map((group) => (
               <div key={group.group} className="brutal-box p-5">
-                <p className="border-b-2 border-[var(--ink)] pb-2 font-mono text-xs font-bold uppercase tracking-wider text-[var(--navy)]">
+                <p className="flex items-center gap-2 border-b-2 border-[var(--ink)] pb-2.5 font-mono text-xs font-bold uppercase tracking-wider text-[var(--navy)]">
+                  {getSkillIcon(group.group)}
                   {group.group}
                 </p>
                 <div className="mt-4 flex flex-wrap gap-1.5">
@@ -497,7 +530,7 @@ export function App() {
       <footer className="border-t-2 border-[var(--ink)] bg-[var(--bg)] py-8">
         <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-6 font-mono text-xs font-medium text-[var(--ink-faint)]">
           <p>© {new Date().getFullYear()} {PROFILE.fullName}</p>
-          <p>REACT · VITE · TAILWIND</p>
+          <p>NET · TELECOM · APPLIED AI</p>
         </div>
       </footer>
     </div>
