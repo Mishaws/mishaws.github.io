@@ -21,7 +21,17 @@ export interface TimelineEntry {
   title: string;
   summary: string;
   bullets?: string[];
-  tag: string;
+}
+
+export interface CertificateItem {
+  title: string;
+  categoryLabel: string;
+  issuer: string;
+  date: string;
+  summary: string;
+  imageSrc: string;
+  documentSrc: string;
+  verifyHref?: string;
 }
 
 export const PROFILE = {
@@ -39,30 +49,11 @@ export const PROFILE = {
   cvPath: "/cv/CV_Michael_2026.pdf",
 };
 
-export const HIGHLIGHTS = [
-  {
-    eyebrow: "AI Challenge",
-    value: "5th & 12th",
-    label: "SBER International AI Challenge (0.9477 Macro F1)",
-  },
-  {
-    eyebrow: "Scholarship",
-    value: "SPbPU Russia",
-    label: "Winter University Turing Track — Fully Funded",
-  },
-  {
-    eyebrow: "Networking",
-    value: "CCNA · Top 10",
-    label: "Cisco Certified & UGM National Networking 4.0",
-  },
-];
-
 export const EXPERIENCE_TIMELINE: TimelineEntry[] = [
   {
     organization: "Faculty of Dentistry, Universitas Indonesia",
     period: "Aug 2026 – Present",
     title: "Website Development Intern",
-    tag: "Work Experience",
     summary:
       "Building and maintaining the faculty's official portal across responsive frontend views and database-backed REST APIs.",
     bullets: [
@@ -74,7 +65,6 @@ export const EXPERIENCE_TIMELINE: TimelineEntry[] = [
     organization: "SPbPU — Peter the Great Saint Petersburg Polytechnic Univ.",
     period: "Nov – Dec 2026",
     title: "Winter University of Engineering Sciences — Turing Track",
-    tag: "Fully Funded Awardee",
     summary:
       "Selected via competitive full scholarship for a 2-week international engineering program in Russia focusing on applied AI, data analytics, and cyber-physical systems.",
   },
@@ -82,7 +72,6 @@ export const EXPERIENCE_TIMELINE: TimelineEntry[] = [
     organization: "Southeast Asia Immersion Leadership Programme",
     period: "Sep 2026",
     title: "Buddy / Participant (with Ngee Ann Polytechnic, Singapore)",
-    tag: "International Sprint",
     summary:
       "Collaborated with Singaporean students in a 5-day sprint designing an AI-based waste collection and recycling concept for Jakarta.",
   },
@@ -90,7 +79,6 @@ export const EXPERIENCE_TIMELINE: TimelineEntry[] = [
     organization: "Faculty of Engineering, Universitas Indonesia",
     period: "Sep – Dec 2025",
     title: "Student Assistant — Introduction to Engineering Design",
-    tag: "Teaching",
     summary:
       "Mentored undergraduate teams on engineering design fundamentals and coordinated exhibition layout and scheduling.",
   },
@@ -101,7 +89,6 @@ export const EDUCATION_TIMELINE: TimelineEntry[] = [
     organization: "Universitas Indonesia",
     period: "Aug 2024 – Present",
     title: "Undergraduate Computer Engineering",
-    tag: "GPA 3.58 / 4.00",
     summary:
       "Coursework across Computer Networks, Cybersecurity, Operating Systems, Databases, and AI/LLMs.",
   },
@@ -109,9 +96,8 @@ export const EDUCATION_TIMELINE: TimelineEntry[] = [
     organization: "SMKN 44 Jakarta",
     period: "Jul 2021 – Jul 2024",
     title: "Computer and Network Engineering",
-    tag: "Final Score: 90",
     summary:
-      "Early vocational foundation in routing, switching, WLAN infrastructure, and network administration.",
+      "Vocational foundation in routing, switching, WLAN infrastructure, and network administration.",
   },
 ];
 
@@ -194,19 +180,37 @@ export const PROJECTS: ProjectItem[] = [
   },
 ];
 
-export const CERTIFICATIONS = [
+export const CERTIFICATES: CertificateItem[] = [
   {
     title: "CCNA: Switching, Routing, and Wireless Essentials",
-    issuer: "Cisco · May 2026",
-    detail:
-      "Verified proficiency in VLANs, inter-VLAN routing, spanning tree, DHCP, and WLAN configuration and security.",
-    href: "https://www.credly.com/badges/1ad573d7-2ec1-4149-aa2c-cb758c7dfb30/linked_in_profile",
+    categoryLabel: "CERTIFICATE · CISCO NETWORKING ACADEMY",
+    issuer: "Faculty of Engineering, Universitas Indonesia",
+    date: "28 May 2026",
+    summary:
+      "Verified proficiency in VLAN segmentation, inter-VLAN routing, spanning tree protocol, DHCP, and wireless LAN configuration & security.",
+    imageSrc: "/certificates/ccna-srwe.png",
+    documentSrc: "/certificates/ccna-srwe.pdf",
+    verifyHref: "https://www.credly.com/badges/1ad573d7-2ec1-4149-aa2c-cb758c7dfb30/linked_in_profile",
+  },
+  {
+    title: "CCNA: Introduction to Networks",
+    categoryLabel: "CERTIFICATE · CISCO NETWORKING ACADEMY",
+    issuer: "Faculty of Engineering, Universitas Indonesia",
+    date: "28 May 2026",
+    summary:
+      "Foundational networking architecture covering OSI/TCP-IP models, IPv4/IPv6 subnetting, Ethernet switching, and router configuration.",
+    imageSrc: "/certificates/ccna-itn.png",
+    documentSrc: "/certificates/ccna-itn.pdf",
   },
   {
     title: "Junior Network Administrator (BNSP)",
-    issuer: "KKNI Level II · Jul 2024 – Jul 2027",
-    detail:
-      "Certified competent in network configuration, routing protocols, and troubleshooting based on SKKNI standards.",
+    categoryLabel: "CERTIFICATE OF COMPETENCE · KKNI LEVEL II",
+    issuer: "BNSP — PPPP Central Jakarta LSP",
+    date: "Jul 2024 – Jul 2027",
+    summary:
+      "National professional competency certification in Computer Network Engineering covering routing protocols, switching, and network troubleshooting.",
+    imageSrc: "/certificates/bnsp-jna.png",
+    documentSrc: "/certificates/bnsp-jna.png",
   },
 ];
 

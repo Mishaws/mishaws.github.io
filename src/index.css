@@ -16,11 +16,12 @@
   --ink: #1e2530;
   --ink-dim: #4b5361;
   --ink-faint: #6b7382;
-  --accent: #1e6f9c;
-  --accent-soft: #e3f0f7;
-  --warm: #c1600f;
-  --warm-soft: #f7e6d4;
-  --emerald: #227a4d;
+  --navy: #162d50;
+  --navy-hover: #10223d;
+  --navy-soft: #e7eef7;
+  --accent: #22487a;
+  --accent-soft: #e7eef7;
+  --warm: #b56522;
 }
 
 * {
@@ -40,7 +41,7 @@ body {
 }
 
 ::selection {
-  background-color: var(--accent);
+  background-color: var(--navy);
   color: #ffffff;
 }
 
@@ -84,7 +85,7 @@ body {
 
 .preloader-fill {
   height: 100%;
-  background: var(--accent);
+  background: var(--navy);
   animation: preloader-sweep 0.78s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
@@ -106,14 +107,14 @@ body {
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--warm);
+  color: var(--navy);
 }
 
 .section-tag::before {
   content: "";
   width: 22px;
   height: 1.5px;
-  background: var(--warm);
+  background: var(--navy);
 }
 
 /* --- Scroll Reveal --- */
@@ -142,7 +143,7 @@ body {
   top: 6px;
   bottom: 6px;
   width: 2px;
-  background: linear-gradient(to bottom, var(--accent), var(--line));
+  background: linear-gradient(to bottom, var(--navy), var(--line));
 }
 
 .timeline-row {
@@ -170,7 +171,7 @@ body {
   height: 13px;
   border-radius: 999px;
   background: var(--bg-card);
-  border: 2.5px solid var(--accent);
+  border: 2.5px solid var(--navy);
   transition:
     transform 0.25s ease,
     background-color 0.25s ease,
@@ -178,9 +179,9 @@ body {
 }
 
 .timeline-row:hover .timeline-dot {
-  background: var(--accent);
+  background: var(--navy);
   transform: translateX(-50%) scale(1.2);
-  box-shadow: 0 0 0 5px var(--accent-soft);
+  box-shadow: 0 0 0 5px var(--navy-soft);
 }
 
 .timeline-right {
@@ -214,7 +215,7 @@ body {
   }
 }
 
-/* --- Photo-1 Framed Embed Card + Smooth Cheryllao Hover Motion --- */
+/* --- Framed Embed Card + Smooth Hover Motion --- */
 .embed-card {
   position: relative;
   background: var(--bg-card);
@@ -229,7 +230,7 @@ body {
 
 .embed-card:hover {
   transform: translate(-2px, -4px) rotate(0deg);
-  box-shadow: 7px 7px 0 0 var(--ink);
+  box-shadow: 7px 7px 0 0 var(--navy);
   background: #ffffff;
 }
 
@@ -238,12 +239,53 @@ body {
   transform: translateY(2px);
   transition:
     opacity 0.3s ease,
-    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    color 0.2s ease,
-    border-color 0.2s ease;
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .embed-card:hover .embed-action {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* --- Sliding Certificate Carousel Track --- */
+.cert-track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-bottom: 6px;
+}
+
+.cert-track::-webkit-scrollbar {
+  display: none;
+}
+
+.cert-card {
+  scroll-snap-align: start;
+  flex: 0 0 88%;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.25s ease;
+}
+
+@media (min-width: 768px) {
+  .cert-card {
+    flex: 0 0 calc(50% - 0.75rem);
+  }
+}
+
+.cert-card:hover {
+  border-color: var(--navy);
+  box-shadow: 0 14px 32px -14px rgba(22, 45, 80, 0.16);
+}
+
+.cert-card:hover .cert-img {
+  transform: scale(1.03);
+}
+
+.cert-img {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }

@@ -1,10 +1,9 @@
 import { useEffect, useState, type ReactNode } from "react";
+import { CertificateCarousel } from "./components/CertificateCarousel";
 import { Preloader } from "./components/Preloader";
 import {
-  CERTIFICATIONS,
   EDUCATION_TIMELINE,
   EXPERIENCE_TIMELINE,
-  HIGHLIGHTS,
   PROFILE,
   PROJECTS,
   SKILLS,
@@ -15,7 +14,7 @@ const NAV_ITEMS = [
   { href: "#about", label: "about" },
   { href: "#resume", label: "resume" },
   { href: "#projects", label: "projects" },
-  { href: "#skills", label: "skills" },
+  { href: "#credentials", label: "credentials" },
   { href: "#cv", label: "cv" },
   { href: "#contact", label: "contact" },
 ];
@@ -85,7 +84,7 @@ export function App() {
               <a
                 key={item.href}
                 href={item.href}
-                className="transition-colors hover:text-[var(--accent)]"
+                className="transition-colors hover:text-[var(--navy)]"
               >
                 {item.label}
               </a>
@@ -95,7 +94,7 @@ export function App() {
       </header>
 
       <main id="top" className="paper-grid">
-        {/* 01 // About & Hero (Human, conversational intro focused on AI & network infrastructure) */}
+        {/* 01 // About & Hero (clean, conversational, no highlights block below) */}
         <section
           id="about"
           className="mx-auto max-w-5xl border-b border-[var(--line-soft)] px-6 py-16 md:py-24"
@@ -103,13 +102,13 @@ export function App() {
           <div className="grid items-start gap-10 md:grid-cols-12">
             <div className="md:col-span-8">
               <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-white px-3.5 py-1 font-mono text-xs text-[var(--ink-dim)]">
-                <span className="h-2 w-2 rounded-full bg-[var(--emerald)]" />
+                <span className="h-2 w-2 rounded-full bg-[var(--navy)]" />
                 Computer Engineering @ Universitas Indonesia
               </div>
 
               <h1 className="font-serif text-5xl leading-[1.02] tracking-tight md:text-7xl">
                 Hi, I&apos;m {PROFILE.fullName}
-                <span className="text-[var(--accent)]">.</span>
+                <span className="text-[var(--navy)]">.</span>
               </h1>
               <p className="mt-3 font-serif text-2xl italic text-[var(--ink-dim)] md:text-3xl">
                 Exploring artificial intelligence and network infrastructure.
@@ -131,13 +130,13 @@ export function App() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
                   href="#projects"
-                  className="inline-flex items-center gap-2 rounded-lg bg-[var(--ink)] px-5 py-2.5 text-sm font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-[var(--accent)]"
+                  className="inline-flex items-center gap-2 rounded-lg bg-[var(--navy)] px-5 py-2.5 text-sm font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-[var(--navy-hover)]"
                 >
                   Explore Projects ↓
                 </a>
                 <a
                   href="#resume"
-                  className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-white px-5 py-2.5 text-sm font-medium text-[var(--ink)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                  className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-white px-5 py-2.5 text-sm font-medium text-[var(--ink)] transition-all hover:-translate-y-0.5 hover:border-[var(--navy)] hover:text-[var(--navy)]"
                 >
                   View Resume
                 </a>
@@ -145,7 +144,7 @@ export function App() {
                   href={PROFILE.cvPath}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--bg-alt)] px-5 py-2.5 font-mono text-xs font-medium text-[var(--ink)] transition-all hover:-translate-y-0.5 hover:border-[var(--warm)] hover:text-[var(--warm)]"
+                  className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--bg-alt)] px-5 py-2.5 font-mono text-xs font-medium text-[var(--ink)] transition-all hover:-translate-y-0.5 hover:border-[var(--navy)] hover:text-[var(--navy)]"
                 >
                   CV PDF ↗
                 </a>
@@ -154,7 +153,7 @@ export function App() {
 
             <aside className="md:col-span-4">
               <div className="rounded-xl border border-[var(--line)] bg-white p-6 shadow-xs">
-                <p className="font-mono text-[11px] uppercase tracking-widest text-[var(--warm)]">
+                <p className="font-mono text-[11px] uppercase tracking-widest text-[var(--navy)]">
                   currently
                 </p>
                 <dl className="mt-4 space-y-3 text-sm">
@@ -178,24 +177,9 @@ export function App() {
               </div>
             </aside>
           </div>
-
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
-            {HIGHLIGHTS.map((item) => (
-              <div
-                key={item.eyebrow}
-                className="rounded-xl border border-[var(--line)] bg-white/80 px-5 py-4 transition-colors hover:bg-white"
-              >
-                <p className="font-mono text-[11px] uppercase tracking-wider text-[var(--warm)]">
-                  {item.eyebrow}
-                </p>
-                <p className="mt-1 font-serif text-3xl text-[var(--ink)]">{item.value}</p>
-                <p className="mt-1 text-xs leading-relaxed text-[var(--ink-dim)]">{item.label}</p>
-              </div>
-            ))}
-          </div>
         </section>
 
-        {/* 02 // Resume Timeline */}
+        {/* 02 // Resume Timeline (clean timeline without unnecessary blue/orange pills) */}
         <RevealBlock
           id="resume"
           className="mx-auto max-w-5xl border-b border-[var(--line-soft)] px-6 py-16 md:py-20"
@@ -203,7 +187,7 @@ export function App() {
           <div className="section-tag">02 // resume</div>
           <div className="mt-3 flex flex-wrap items-baseline justify-between gap-4">
             <h2 className="font-serif text-4xl tracking-tight md:text-5xl">
-              Experience &amp; <span className="italic text-[var(--accent)]">Education</span>
+              Experience &amp; <span className="italic text-[var(--navy)]">Education</span>
             </h2>
             <p className="max-w-md text-sm text-[var(--ink-dim)]">
               Academic journey, engineering internships, and international programs.
@@ -211,7 +195,7 @@ export function App() {
           </div>
 
           <div className="mt-10 rounded-2xl border border-[var(--line)] bg-white p-6 md:p-10">
-            <h3 className="mb-8 font-mono text-xs font-semibold uppercase tracking-widest text-[var(--accent)]">
+            <h3 className="mb-8 font-mono text-xs font-semibold uppercase tracking-widest text-[var(--navy)]">
               Experience &amp; International Programs
             </h3>
             <div className="resume-timeline">
@@ -225,12 +209,7 @@ export function App() {
                   </div>
                   <div className="timeline-dot" aria-hidden="true" />
                   <div className="timeline-right">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h4 className="text-lg font-semibold text-[var(--ink)]">{item.title}</h4>
-                      <span className="rounded-md bg-[var(--accent-soft)] px-2 py-0.5 font-mono text-[11px] text-[var(--accent)]">
-                        {item.tag}
-                      </span>
-                    </div>
+                    <h4 className="text-lg font-semibold text-[var(--ink)]">{item.title}</h4>
                     <p className="mt-2 text-sm leading-relaxed text-[var(--ink-dim)]">
                       {item.summary}
                     </p>
@@ -238,7 +217,7 @@ export function App() {
                       <ul className="mt-2.5 space-y-1.5 text-sm text-[var(--ink-dim)]">
                         {item.bullets.map((b) => (
                           <li key={b} className="flex gap-2.5">
-                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--warm)]" />
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--navy)]" />
                             <span>{b}</span>
                           </li>
                         ))}
@@ -251,7 +230,7 @@ export function App() {
           </div>
 
           <div className="mt-6 rounded-2xl border border-[var(--line)] bg-white p-6 md:p-10">
-            <h3 className="mb-8 font-mono text-xs font-semibold uppercase tracking-widest text-[var(--warm)]">
+            <h3 className="mb-8 font-mono text-xs font-semibold uppercase tracking-widest text-[var(--navy)]">
               Education
             </h3>
             <div className="resume-timeline">
@@ -265,12 +244,7 @@ export function App() {
                   </div>
                   <div className="timeline-dot" aria-hidden="true" />
                   <div className="timeline-right">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h4 className="text-lg font-semibold text-[var(--ink)]">{edu.title}</h4>
-                      <span className="rounded-md bg-[var(--warm-soft)] px-2 py-0.5 font-mono text-[11px] text-[var(--warm)]">
-                        {edu.tag}
-                      </span>
-                    </div>
+                    <h4 className="text-lg font-semibold text-[var(--ink)]">{edu.title}</h4>
                     <p className="mt-2 text-sm leading-relaxed text-[var(--ink-dim)]">
                       {edu.summary}
                     </p>
@@ -281,7 +255,7 @@ export function App() {
           </div>
         </RevealBlock>
 
-        {/* 03 // Projects (Photo-1 framed editorial cards, NO emojis, subtle hover motion) */}
+        {/* 03 // Projects (Framed cards, Navy secondary badge, no emojis) */}
         <RevealBlock
           id="projects"
           className="mx-auto max-w-5xl border-b border-[var(--line-soft)] px-6 py-16 md:py-20"
@@ -290,7 +264,7 @@ export function App() {
           <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
             <div>
               <h2 className="font-serif text-4xl tracking-tight md:text-5xl">
-                Selected <span className="italic text-[var(--accent)]">Work</span>
+                Selected <span className="italic text-[var(--navy)]">Work</span>
               </h2>
               <p className="mt-2 max-w-xl text-sm text-[var(--ink-dim)]">
                 Competitions, hardware/AI builds, network topologies, and software systems.
@@ -307,8 +281,8 @@ export function App() {
                     onClick={() => setFilter(f.key)}
                     className={`cursor-pointer rounded-md border px-3 py-1.5 font-mono text-xs transition-all ${
                       active
-                        ? "border-[var(--ink)] bg-[var(--ink)] text-white"
-                        : "border-[var(--line)] bg-white text-[var(--ink-dim)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                        ? "border-[var(--navy)] bg-[var(--navy)] text-white"
+                        : "border-[var(--line)] bg-white text-[var(--ink-dim)] hover:border-[var(--navy)] hover:text-[var(--navy)]"
                     }`}
                   >
                     {f.label}
@@ -331,7 +305,7 @@ export function App() {
                     <span className="font-mono text-xs font-medium text-[var(--ink-faint)]">
                       {project.year}
                     </span>
-                    <span className="inline-flex items-center rounded-full border-2 border-[var(--ink)] bg-[var(--emerald)] px-3 py-0.5 font-mono text-[10px] font-medium uppercase tracking-widest text-white">
+                    <span className="inline-flex items-center rounded-full border-2 border-[var(--ink)] bg-[var(--navy)] px-3 py-0.5 font-mono text-[10px] font-medium uppercase tracking-widest text-white">
                       {project.badge}
                     </span>
                   </div>
@@ -364,7 +338,7 @@ export function App() {
                           href={link.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 font-mono text-xs font-medium text-[var(--accent)] hover:underline"
+                          className="inline-flex items-center gap-1 font-mono text-xs font-medium text-[var(--navy)] hover:underline"
                         >
                           {link.label}
                         </a>
@@ -377,48 +351,28 @@ export function App() {
           </div>
         </RevealBlock>
 
-        {/* 04 // Skills & Certifications */}
+        {/* 04 // Sliding Certificates Carousel & Technical Toolkit */}
         <RevealBlock
-          id="skills"
+          id="credentials"
           className="mx-auto max-w-5xl border-b border-[var(--line-soft)] px-6 py-16 md:py-20"
         >
-          <div className="section-tag">04 // certifications &amp; skills</div>
+          <div className="section-tag">04 // credentials &amp; toolkit</div>
           <h2 className="mt-3 font-serif text-4xl tracking-tight md:text-5xl">
-            Credentials &amp; <span className="italic text-[var(--accent)]">Toolkit</span>
+            Certificates &amp; <span className="italic text-[var(--navy)]">Skills</span>
           </h2>
+          <p className="mt-2 max-w-xl text-sm text-[var(--ink-dim)]">
+            Verified networking credentials and core technical stack.
+          </p>
 
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
-            {CERTIFICATIONS.map((cert) => (
-              <div
-                key={cert.title}
-                className="rounded-xl border border-[var(--line)] bg-white p-6 transition-shadow hover:shadow-sm"
-              >
-                <p className="font-mono text-xs text-[var(--warm)]">{cert.issuer}</p>
-                <h3 className="mt-1.5 font-serif text-2xl leading-snug text-[var(--ink)]">
-                  {cert.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-[var(--ink-dim)]">{cert.detail}</p>
-                {cert.href && (
-                  <a
-                    href={cert.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-1 font-mono text-xs font-medium text-[var(--accent)] hover:underline"
-                  >
-                    Verify on Credly ↗
-                  </a>
-                )}
-              </div>
-            ))}
-          </div>
+          <CertificateCarousel />
 
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
             {SKILLS.map((group) => (
               <div
                 key={group.group}
                 className="rounded-xl border border-[var(--line)] bg-white p-5"
               >
-                <p className="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--accent)]">
+                <p className="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--navy)]">
                   {group.group}
                 </p>
                 <div className="mt-3 flex flex-wrap gap-1.5">
@@ -445,7 +399,7 @@ export function App() {
           <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
             <div>
               <h2 className="font-serif text-4xl tracking-tight md:text-5xl">
-                Full <span className="italic text-[var(--accent)]">CV</span>
+                Full <span className="italic text-[var(--navy)]">CV</span>
               </h2>
               <p className="mt-2 text-sm text-[var(--ink-dim)]">
                 Preview or download my latest PDF CV directly.
@@ -456,14 +410,14 @@ export function App() {
                 href={PROFILE.cvPath}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-lg border border-[var(--line)] bg-white px-4 py-2 font-mono text-xs font-medium text-[var(--ink)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                className="rounded-lg border border-[var(--line)] bg-white px-4 py-2 font-mono text-xs font-medium text-[var(--ink)] transition-colors hover:border-[var(--navy)] hover:text-[var(--navy)]"
               >
                 Open in New Tab ↗
               </a>
               <a
                 href={PROFILE.cvPath}
                 download="CV_Michael_Christian_2026.pdf"
-                className="rounded-lg bg-[var(--ink)] px-4 py-2 font-mono text-xs font-medium text-white transition-colors hover:bg-[var(--accent)]"
+                className="rounded-lg bg-[var(--navy)] px-4 py-2 font-mono text-xs font-medium text-white transition-colors hover:bg-[var(--navy-hover)]"
               >
                 Download PDF ↓
               </a>
@@ -485,7 +439,7 @@ export function App() {
                   href={PROFILE.cvPath}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-block rounded-lg bg-[var(--ink)] px-5 py-2 font-mono text-xs text-white"
+                  className="mt-4 inline-block rounded-lg bg-[var(--navy)] px-5 py-2 font-mono text-xs text-white"
                 >
                   Open CV PDF ↗
                 </a>
@@ -499,7 +453,7 @@ export function App() {
           <div className="rounded-2xl border border-[var(--line)] bg-white p-8 md:p-12">
             <div className="section-tag">06 // contact</div>
             <h2 className="mt-3 font-serif text-4xl tracking-tight md:text-5xl">
-              Let&apos;s <span className="italic text-[var(--accent)]">connect</span>.
+              Let&apos;s <span className="italic text-[var(--navy)]">connect</span>.
             </h2>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-[var(--ink-dim)] md:text-base">
               Open to research internships, AI or networking collaborations, and software
@@ -508,7 +462,7 @@ export function App() {
             <div className="mt-7 flex flex-wrap gap-3">
               <a
                 href={`mailto:${PROFILE.email}`}
-                className="inline-flex items-center gap-2 rounded-lg bg-[var(--ink)] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[var(--accent)]"
+                className="inline-flex items-center gap-2 rounded-lg bg-[var(--navy)] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[var(--navy-hover)]"
               >
                 Email: {PROFILE.email}
               </a>
@@ -516,7 +470,7 @@ export function App() {
                 href={PROFILE.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--bg)] px-5 py-2.5 font-mono text-xs font-medium text-[var(--ink)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--bg)] px-5 py-2.5 font-mono text-xs font-medium text-[var(--ink)] transition-colors hover:border-[var(--navy)] hover:text-[var(--navy)]"
               >
                 GitHub / Mishaws ↗
               </a>
@@ -524,7 +478,7 @@ export function App() {
                 href={PROFILE.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--bg)] px-5 py-2.5 font-mono text-xs font-medium text-[var(--ink)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--bg)] px-5 py-2.5 font-mono text-xs font-medium text-[var(--ink)] transition-colors hover:border-[var(--navy)] hover:text-[var(--navy)]"
               >
                 LinkedIn ↗
               </a>
