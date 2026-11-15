@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-pop: var(--pop);
+  --color-pop-soft: var(--pop-soft);
+}
+
+:root {
+  --radius: 0.75rem;
+  --paper: oklch(97.2% 0.012 90);
+  --ink: oklch(22% 0.03 60);
+  --pop: oklch(55% 0.12 155);
+  --pop-soft: oklch(90% 0.05 95);
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: oklch(99% 0.008 90);
+  --card-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: oklch(93% 0.02 90);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(94% 0.015 90);
+  --muted-foreground: oklch(45% 0.02 60);
+  --accent: var(--pop-soft);
+  --accent-foreground: var(--ink);
+  --border: oklch(85% 0.02 80);
+  --input: var(--border);
+  --ring: var(--pop);
+}
+
+[data-mode="industry"] {
+  --paper: oklch(13% 0.02 280);
+  --ink: oklch(97% 0.02 90);
+  --pop: oklch(70% 0.22 25);
+  --pop-soft: oklch(55% 0.2 320);
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: oklch(18% 0.03 280);
+  --card-foreground: var(--ink);
+  --primary: var(--pop);
+  --primary-foreground: oklch(13% 0.02 280);
+  --secondary: oklch(22% 0.04 280);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(20% 0.03 280);
+  --muted-foreground: oklch(75% 0.03 280);
+  --accent: var(--pop-soft);
+  --accent-foreground: var(--ink);
+  --border: oklch(30% 0.04 280);
+  --input: var(--border);
+  --ring: var(--pop);
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+html,
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  transition: background-color 0.5s, color 0.5s;
+}
+
+::selection {
+  background-color: var(--color-pop);
+  color: var(--color-background);
+}
+
+.grain {
+  background-image: radial-gradient(#0000000d 1px, #0000 1px);
+  background-size: 4px 4px;
+}
+
+.sticker {
+  box-shadow: 4px 4px 0 0 var(--color-ink);
+  border: 2px solid var(--color-ink);
+}
+
+[data-mode="industry"] .sticker {
+  box-shadow: 4px 4px 0 0 var(--color-pop);
+  border-color: var(--color-ink);
+}
+
+.wiggle {
+  animation: 4s ease-in-out infinite wiggle;
+}
+
+@keyframes wiggle {
+  0%,
+  to {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+.marquee {
+  animation: 30s linear infinite marquee;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate(0);
+  }
+  to {
+    transform: translate(-50%);
+  }
+}
+
+.blob {
+  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+  animation: 12s ease-in-out infinite blob;
+}
+
+@keyframes blob {
+  0%,
+  to {
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+  }
+  50% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}
+
+.underline-squiggle {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 8'><path d='M0 4 Q 10 0 20 4 T 40 4 T 60 4 T 80 4' fill='none' stroke='currentColor' stroke-width='2'/></svg>");
+  background-position: bottom;
+  background-repeat: repeat-x;
+  background-size: 80px 8px;
+  padding-bottom: 8px;
+}
+
+.toggle-bounce {
+  animation: 2.6s ease-in-out infinite toggle-bounce;
+}
+
+@keyframes toggle-bounce {
+  0%,
+  to {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.toggle-pulse:before {
+  content: "";
+  border: 2px solid var(--color-pop);
+  opacity: 0;
+  pointer-events: none;
+  border-radius: 9999px;
+  animation: 2.4s ease-out infinite toggle-pulse;
+  position: absolute;
+  inset: -4px;
+}
+
+@keyframes toggle-pulse {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+}
+
+.toggle-arrow-left {
+  animation: 1.4s ease-in-out infinite arrow-left;
+}
+
+.toggle-arrow-right {
+  animation: 1.4s ease-in-out infinite arrow-right;
+}
+
+@keyframes arrow-left {
+  0%,
+  to {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translate(-6px, -50%);
+  }
+}
+
+@keyframes arrow-right {
+  0%,
+  to {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translate(6px, -50%);
+  }
+}
+
+.toggle-hint {
+  animation: 2.4s ease-in-out infinite hint-fade;
+}
+
+@keyframes hint-fade {
+  0%,
+  to {
+    opacity: 0.75;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
