@@ -1,31 +1,29 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 :root {
-  --bg: #f7f5f0;
-  --bg-alt: #efebe2;
-  --bg-card: #fffdf9;
-  --hover-bg: #f3efe6;
-  --line: #dcd6c9;
-  --line-soft: #e8e3d8;
-  --ink: #1e2530;
-  --ink-dim: #4b5361;
-  --ink-faint: #6b7382;
+  --bg: #f6f4ee;
+  --bg-alt: #ece8de;
+  --bg-card: #ffffff;
+  --line: #d5cfc2;
+  --line-soft: #e6e1d5;
+  --ink: #181d25;
+  --ink-dim: #404854;
+  --ink-faint: #67707e;
   --navy: #162d50;
-  --navy-hover: #10223d;
-  --navy-soft: #e7eef7;
-  --accent: #22487a;
-  --accent-soft: #e7eef7;
-  --warm: #b56522;
+  --navy-hover: #0f203b;
+  --navy-soft: #e6edf7;
+  --blue-name: #1b4f96;
+  --accent: #1b4f96;
 }
 
 * {
-  border-color: var(--line);
+  border-color: var(--ink);
 }
 
 html {
@@ -47,12 +45,56 @@ body {
 
 .paper-grid {
   background-image:
-    linear-gradient(to right, rgba(30, 37, 48, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 37, 48, 0.035) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(to right, rgba(24, 29, 37, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(24, 29, 37, 0.045) 1px, transparent 1px);
+  background-size: 36px 36px;
 }
 
-/* --- Preloader (Cheryllao-inspired editorial light curtain) --- */
+/* --- Modern Neo-Brutalist Surfaces & Karina-style Tactile Buttons --- */
+.brutal-box {
+  background: var(--bg-card);
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  box-shadow: 4px 4px 0 0 var(--ink);
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.2s ease;
+}
+
+.brutal-box-hover:hover {
+  transform: translate(-2px, -3px);
+  box-shadow: 6px 6px 0 0 var(--navy);
+}
+
+.brutal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  box-shadow: 4px 4px 0 0 var(--ink);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  transition:
+    transform 0.16s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.16s ease,
+    background-color 0.16s ease,
+    color 0.16s ease;
+}
+
+.brutal-btn:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 var(--ink);
+}
+
+.brutal-btn:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 var(--ink);
+}
+
+/* --- Preloader (Light brutalist curtain) --- */
 .preloader {
   position: fixed;
   inset: 0;
@@ -63,24 +105,24 @@ body {
   justify-content: center;
   background-color: var(--bg);
   transition:
-    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-    visibility 0.55s;
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0.5s;
 }
 
 .preloader.is-done {
   opacity: 0;
-  transform: translateY(-12px);
+  transform: translateY(-10px);
   visibility: hidden;
   pointer-events: none;
 }
 
 .preloader-bar {
-  width: 140px;
-  height: 2px;
-  background: var(--line);
+  width: 150px;
+  height: 4px;
+  border: 1.5px solid var(--ink);
+  background: var(--bg-card);
   overflow: hidden;
-  border-radius: 999px;
 }
 
 .preloader-fill {
@@ -105,6 +147,7 @@ body {
   gap: 10px;
   font-family: var(--font-mono);
   font-size: 12px;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--navy);
@@ -112,8 +155,8 @@ body {
 
 .section-tag::before {
   content: "";
-  width: 22px;
-  height: 1.5px;
+  width: 18px;
+  height: 3px;
   background: var(--navy);
 }
 
@@ -122,8 +165,8 @@ body {
   opacity: 0;
   transform: translateY(14px);
   transition:
-    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal.is-visible {
@@ -131,7 +174,7 @@ body {
   transform: translateY(0);
 }
 
-/* --- Resume Timeline (Hellobayu-inspired two-column timeline) --- */
+/* --- Resume Timeline (Sharp Brutalist Nodes) --- */
 .resume-timeline {
   position: relative;
 }
@@ -143,7 +186,7 @@ body {
   top: 6px;
   bottom: 6px;
   width: 2px;
-  background: linear-gradient(to bottom, var(--navy), var(--line));
+  background: var(--ink);
 }
 
 .timeline-row {
@@ -167,21 +210,19 @@ body {
   left: calc(24% + 1px);
   top: 6px;
   transform: translateX(-50%);
-  width: 13px;
-  height: 13px;
-  border-radius: 999px;
+  width: 12px;
+  height: 12px;
   background: var(--bg-card);
-  border: 2.5px solid var(--navy);
+  border: 2px solid var(--ink);
   transition:
-    transform 0.25s ease,
-    background-color 0.25s ease,
-    box-shadow 0.25s ease;
+    transform 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .timeline-row:hover .timeline-dot {
   background: var(--navy);
+  border-color: var(--navy);
   transform: translateX(-50%) scale(1.2);
-  box-shadow: 0 0 0 5px var(--navy-soft);
 }
 
 .timeline-right {
@@ -215,34 +256,16 @@ body {
   }
 }
 
-/* --- Framed Embed Card + Smooth Hover Motion --- */
-.embed-card {
-  position: relative;
-  background: var(--bg-card);
-  border: 2px solid var(--ink);
-  border-radius: 18px;
-  box-shadow: 4px 4px 0 0 var(--ink);
-  transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.25s ease;
-}
-
-.embed-card:hover {
-  transform: translate(-2px, -4px) rotate(0deg);
-  box-shadow: 7px 7px 0 0 var(--navy);
-  background: #ffffff;
-}
-
+/* --- Project Embed Action Reveal --- */
 .embed-action {
-  opacity: 0.72;
+  opacity: 0.78;
   transform: translateY(2px);
   transition:
-    opacity 0.3s ease,
-    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.25s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.embed-card:hover .embed-action {
+.brutal-box-hover:hover .embed-action {
   opacity: 1;
   transform: translateY(0);
 }
@@ -255,7 +278,7 @@ body {
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   scrollbar-width: none;
-  padding-bottom: 6px;
+  padding: 2px 4px 10px 2px;
 }
 
 .cert-track::-webkit-scrollbar {
@@ -265,10 +288,6 @@ body {
 .cert-card {
   scroll-snap-align: start;
   flex: 0 0 88%;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border-color 0.25s ease;
 }
 
 @media (min-width: 768px) {
@@ -277,15 +296,10 @@ body {
   }
 }
 
-.cert-card:hover {
-  border-color: var(--navy);
-  box-shadow: 0 14px 32px -14px rgba(22, 45, 80, 0.16);
-}
-
 .cert-card:hover .cert-img {
   transform: scale(1.03);
 }
 
 .cert-img {
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }

@@ -54,18 +54,17 @@ export function CertificateCarousel() {
   return (
     <>
       <div className="mt-8">
-        {/* Carousel Controls Row */}
         <div className="mb-4 flex items-center justify-between gap-4">
-          <p className="font-mono text-xs text-[var(--ink-faint)]">
-            0{activeIndex + 1} / 0{CERTIFICATES.length} — slide or use arrows to inspect
+          <p className="font-mono text-xs font-semibold text-[var(--ink-faint)]">
+            0{activeIndex + 1} / 0{CERTIFICATES.length} — SLIDE OR CLICK ARROWS
           </p>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             <button
               type="button"
               onClick={() => scrollToIndex(activeIndex - 1)}
               disabled={activeIndex === 0}
               aria-label="Previous certificate"
-              className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-[var(--line)] bg-white font-mono text-sm text-[var(--ink)] transition-colors hover:border-[var(--navy)] hover:bg-[var(--navy)] hover:text-white disabled:cursor-not-allowed disabled:opacity-35"
+              className="brutal-btn h-9 w-10 cursor-pointer bg-white text-sm text-[var(--ink)] hover:bg-[var(--navy)] hover:text-white disabled:cursor-not-allowed disabled:opacity-35"
             >
               ←
             </button>
@@ -74,46 +73,45 @@ export function CertificateCarousel() {
               onClick={() => scrollToIndex(activeIndex + 1)}
               disabled={activeIndex === CERTIFICATES.length - 1}
               aria-label="Next certificate"
-              className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-[var(--line)] bg-white font-mono text-sm text-[var(--ink)] transition-colors hover:border-[var(--navy)] hover:bg-[var(--navy)] hover:text-white disabled:cursor-not-allowed disabled:opacity-35"
+              className="brutal-btn h-9 w-10 cursor-pointer bg-white text-sm text-[var(--ink)] hover:bg-[var(--navy)] hover:text-white disabled:cursor-not-allowed disabled:opacity-35"
             >
               →
             </button>
           </div>
         </div>
 
-        {/* Horizontal Snap Track */}
         <div ref={trackRef} className="cert-track">
           {CERTIFICATES.map((cert) => (
             <article
               key={cert.title}
-              className="cert-card flex flex-col overflow-hidden rounded-2xl border border-[var(--line)] bg-white"
+              className="cert-card brutal-box brutal-box-hover flex flex-col overflow-hidden"
             >
               <button
                 type="button"
                 onClick={() => setPreviewCert(cert)}
-                className="group relative aspect-[16/10] w-full cursor-zoom-in overflow-hidden border-b border-[var(--line-soft)] bg-[#f4f1ea] p-4"
+                className="group relative aspect-[16/10] w-full cursor-zoom-in overflow-hidden border-b-2 border-[var(--ink)] bg-[#ece8de] p-4"
                 aria-label={`Preview ${cert.title}`}
               >
                 <img
                   src={cert.imageSrc}
                   alt={cert.title}
                   loading="lazy"
-                  className="cert-img h-full w-full object-contain drop-shadow-xs"
+                  className="cert-img h-full w-full object-contain"
                 />
-                <span className="pointer-events-none absolute right-3 bottom-3 rounded-full border border-[var(--line)] bg-white/95 px-2.5 py-1 font-mono text-[10px] text-[var(--navy)] opacity-0 shadow-xs transition-opacity group-hover:opacity-100">
-                  Click to zoom
+                <span className="pointer-events-none absolute right-3 bottom-3 border-2 border-[var(--ink)] bg-white px-2.5 py-1 font-mono text-[10px] font-bold uppercase text-[var(--navy)] opacity-0 shadow-[2px_2px_0_0_var(--ink)] transition-opacity group-hover:opacity-100">
+                  Zoom ↗
                 </span>
               </button>
 
               <div className="flex flex-1 flex-col justify-between p-6">
                 <div>
-                  <p className="font-mono text-[11px] font-medium tracking-wider text-[var(--navy)]">
+                  <span className="inline-block border-2 border-[var(--ink)] bg-[var(--navy)] px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-white">
                     {cert.categoryLabel}
-                  </p>
-                  <h3 className="mt-2 font-serif text-2xl leading-snug text-[var(--ink)]">
+                  </span>
+                  <h3 className="mt-3 font-display text-xl font-bold leading-snug tracking-tight text-[var(--ink)]">
                     {cert.title}
                   </h3>
-                  <p className="mt-1 font-mono text-[11px] text-[var(--ink-faint)]">
+                  <p className="mt-1 font-mono text-[11px] font-medium text-[var(--ink-faint)]">
                     {cert.issuer} · {cert.date}
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-[var(--ink-dim)]">
@@ -121,12 +119,12 @@ export function CertificateCarousel() {
                   </p>
                 </div>
 
-                <div className="mt-5 flex flex-wrap gap-3 border-t border-[var(--line-soft)] pt-4">
+                <div className="mt-5 flex flex-wrap gap-2.5 border-t-2 border-[var(--line-soft)] pt-4">
                   <a
                     href={cert.documentSrc}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-mono text-xs font-medium text-[var(--navy)] hover:underline"
+                    className="brutal-btn bg-white px-3 py-1.5 text-xs text-[var(--ink)] hover:bg-[var(--navy)] hover:text-white"
                   >
                     Open File ↗
                   </a>
@@ -135,7 +133,7 @@ export function CertificateCarousel() {
                       href={cert.verifyHref}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-mono text-xs font-medium text-[var(--accent)] hover:underline"
+                      className="brutal-btn bg-[var(--navy-soft)] px-3 py-1.5 text-xs text-[var(--navy)] hover:bg-[var(--navy)] hover:text-white"
                     >
                       Verify on Credly ↗
                     </a>
@@ -146,7 +144,7 @@ export function CertificateCarousel() {
           ))}
         </div>
 
-        {/* Dots Indicator */}
+        {/* Sharp rectangular pagination bars */}
         <div className="mt-4 flex justify-center gap-2">
           {CERTIFICATES.map((cert, idx) => {
             const active = idx === activeIndex;
@@ -156,8 +154,8 @@ export function CertificateCarousel() {
                 type="button"
                 onClick={() => scrollToIndex(idx)}
                 aria-label={`Go to ${cert.title}`}
-                className={`h-2 cursor-pointer rounded-full transition-all ${
-                  active ? "w-6 bg-[var(--navy)]" : "w-2 bg-[var(--line)] hover:bg-[var(--ink-faint)]"
+                className={`h-2 cursor-pointer border border-[var(--ink)] transition-all ${
+                  active ? "w-8 bg-[var(--navy)]" : "w-3 bg-white hover:bg-[var(--navy-soft)]"
                 }`}
               />
             );
@@ -165,35 +163,37 @@ export function CertificateCarousel() {
         </div>
       </div>
 
-      {/* Lightbox Modal for reading certificate details clearly */}
+      {/* Brutalist Lightbox Modal */}
       {previewCert && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#1e2530]/65 p-4 backdrop-blur-xs"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[#181d25]/70 p-4 backdrop-blur-xs"
           onClick={() => setPreviewCert(null)}
           role="dialog"
           aria-modal="true"
           aria-label={previewCert.title}
         >
           <div
-            className="relative max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-2xl border border-[var(--line)] bg-white p-4 md:p-6"
+            className="brutal-box relative max-h-[90vh] w-full max-w-4xl overflow-hidden bg-white p-4 md:p-6"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="mb-4 flex items-center justify-between gap-4 border-b border-[var(--line-soft)] pb-3">
+            <div className="mb-4 flex items-center justify-between gap-4 border-b-2 border-[var(--ink)] pb-3">
               <div>
-                <p className="font-mono text-[11px] uppercase tracking-wider text-[var(--navy)]">
+                <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--navy)]">
                   {previewCert.categoryLabel}
                 </p>
-                <h4 className="font-serif text-2xl text-[var(--ink)]">{previewCert.title}</h4>
+                <h4 className="font-display text-2xl font-bold text-[var(--ink)]">
+                  {previewCert.title}
+                </h4>
               </div>
               <button
                 type="button"
                 onClick={() => setPreviewCert(null)}
-                className="cursor-pointer rounded-lg border border-[var(--line)] px-3 py-1.5 font-mono text-xs text-[var(--ink)] hover:bg-[var(--bg-alt)]"
+                className="brutal-btn cursor-pointer bg-white px-3 py-1.5 text-xs text-[var(--ink)] hover:bg-[var(--navy)] hover:text-white"
               >
                 Close
               </button>
             </div>
-            <div className="flex max-h-[70vh] items-center justify-center overflow-auto rounded-xl bg-[#f4f1ea] p-3">
+            <div className="flex max-h-[70vh] items-center justify-center overflow-auto border-2 border-[var(--ink)] bg-[#ece8de] p-3">
               <img
                 src={previewCert.imageSrc}
                 alt={previewCert.title}
