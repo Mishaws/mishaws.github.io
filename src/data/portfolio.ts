@@ -1,13 +1,5 @@
 export type ProjectCategory = "all" | "networking" | "ai-systems" | "software";
 
-export type ProjectVisualType =
-  | "sber-ai"
-  | "vhdl-fsm"
-  | "enterprise-net"
-  | "fkg-portal"
-  | "ugm-net"
-  | "game-oop";
-
 export interface ProjectLink {
   label: string;
   href: string;
@@ -16,13 +8,10 @@ export interface ProjectLink {
 export interface ProjectItem {
   title: string;
   year: string;
-  roleType: string;
-  kicker: string;
+  badge: string;
   category: Exclude<ProjectCategory, "all">;
-  visual: ProjectVisualType;
-  hoverCaption: string;
-  bullets: string[];
-  stack: string[];
+  summary: string;
+  tags: string[];
   links?: ProjectLink[];
 }
 
@@ -42,7 +31,7 @@ export const PROFILE = {
   university: "Universitas Indonesia",
   location: "Jakarta, Indonesia",
   gpa: "3.58 / 4.00",
-  focus: "Network Infrastructure · Applied AI & LLMs · Full-Stack Systems",
+  interests: "Artificial Intelligence · Network Infrastructure",
   languages: "English & Bahasa Indonesia",
   email: "chirstianmichael023@gmail.com",
   github: "https://github.com/Mishaws",
@@ -75,10 +64,10 @@ export const EXPERIENCE_TIMELINE: TimelineEntry[] = [
     title: "Website Development Intern",
     tag: "Work Experience",
     summary:
-      "Full-stack development for the faculty's official portal, bridging responsive interfaces with database-backed APIs.",
+      "Building and maintaining the faculty's official portal across responsive frontend views and database-backed REST APIs.",
     bullets: [
-      "Developed responsive web interfaces with React.js and Tailwind CSS, improving cross-device usability.",
-      "Built RESTful APIs and backend services using Node.js and PostgreSQL for announcements, event registrations, and administrative workflows.",
+      "Developed responsive web interfaces using React.js and Tailwind CSS for cross-device usability.",
+      "Built backend services with Node.js and PostgreSQL for announcements, event registrations, and administrative workflows.",
     ],
   },
   {
@@ -87,10 +76,7 @@ export const EXPERIENCE_TIMELINE: TimelineEntry[] = [
     title: "Winter University of Engineering Sciences — Turing Track",
     tag: "Fully Funded Awardee",
     summary:
-      "Selected via competitive full scholarship for a 2-week international engineering program in Russia.",
-    bullets: [
-      "Focused on project-based applied Artificial Intelligence, data analytics, and cyber-physical systems in international teams.",
-    ],
+      "Selected via competitive full scholarship for a 2-week international engineering program in Russia focusing on applied AI, data analytics, and cyber-physical systems.",
   },
   {
     organization: "Southeast Asia Immersion Leadership Programme",
@@ -98,7 +84,7 @@ export const EXPERIENCE_TIMELINE: TimelineEntry[] = [
     title: "Buddy / Participant (with Ngee Ann Polytechnic, Singapore)",
     tag: "International Sprint",
     summary:
-      "Collaborated with Singaporean students in an intensive 5-day sprint designing an AI-based waste collection & recycling system for Jakarta.",
+      "Collaborated with Singaporean students in a 5-day sprint designing an AI-based waste collection and recycling concept for Jakarta.",
   },
   {
     organization: "Faculty of Engineering, Universitas Indonesia",
@@ -106,7 +92,7 @@ export const EXPERIENCE_TIMELINE: TimelineEntry[] = [
     title: "Student Assistant — Introduction to Engineering Design",
     tag: "Teaching",
     summary:
-      "Mentored undergraduate teams on engineering design principles and coordinated final project exhibition layout and scheduling.",
+      "Mentored undergraduate teams on engineering design fundamentals and coordinated exhibition layout and scheduling.",
   },
 ];
 
@@ -117,7 +103,7 @@ export const EDUCATION_TIMELINE: TimelineEntry[] = [
     title: "Undergraduate Computer Engineering",
     tag: "GPA 3.58 / 4.00",
     summary:
-      "Relevant coursework: Computer Networks, Cybersecurity, Operating Systems, Database, and AI/LLMs.",
+      "Coursework across Computer Networks, Cybersecurity, Operating Systems, Databases, and AI/LLMs.",
   },
   {
     organization: "SMKN 44 Jakarta",
@@ -125,7 +111,7 @@ export const EDUCATION_TIMELINE: TimelineEntry[] = [
     title: "Computer and Network Engineering",
     tag: "Final Score: 90",
     summary:
-      "Vocational grounding in router/switch deployment, WLAN infrastructure, and network administration.",
+      "Early vocational foundation in routing, switching, WLAN infrastructure, and network administration.",
   },
 ];
 
@@ -133,31 +119,20 @@ export const PROJECTS: ProjectItem[] = [
   {
     title: "SBER International AI Challenge for Youth",
     year: "2026",
-    roleType: "Applied AI & Computer Vision",
-    kicker: "Qualification 5th Place (0.9477 Macro F1) · Main Stage 12th Place",
+    badge: "AI & ML",
     category: "ai-systems",
-    visual: "sber-ai",
-    hoverCaption: "PyTorch · EfficientNet-V2-S · 5-Fold CV & 3D Mesh QC",
-    bullets: [
-      "Engineered a computer vision pipeline for the 'Noisy Weather Outside' task classifying extreme rain, fog, and snow from distorted autonomous driving imagery.",
-      "Achieved 0.9477 Average Macro F1-score using EfficientNet-V2-S with 5-Fold Cross-Validation, TrivialAugmentWide, RandomErasing, and TTA ensembling.",
-      "Main Stage: Built ML defect-detection models for '3D Mesh Quality Control' targeting topological noise, low polygon counts, and mesh intersections.",
-    ],
-    stack: ["PyTorch", "EfficientNet-V2-S", "5-Fold CV + TTA", "3D ML"],
+    summary:
+      "Ranked 5th in Qualification ('Noisy Weather Outside', 0.9477 Macro F1 via EfficientNet-V2-S, 5-Fold CV & TTA) and 12th in Main Stage ('3D Mesh Quality Control' defect detection).",
+    tags: ["PyTorch", "EfficientNet-V2-S", "5-Fold CV", "3D ML"],
   },
   {
     title: "Enterprise Network Architecture (CCNA 1–3)",
     year: "2025–2026",
-    roleType: "Computer Networks Project",
-    kicker: "Enterprise VLAN, Inter-VLAN Routing & DHCP Design",
+    badge: "Networks",
     category: "networking",
-    visual: "enterprise-net",
-    hoverCaption: "Open Technical Architecture Reports (Google Drive)",
-    bullets: [
-      "Designed and configured real-world network topologies aligned with CCNA 1, 2, and 3 standards.",
-      "Implemented VLAN segmentation, inter-VLAN routing, spanning tree, and automated DHCP addressing across enterprise-scale segments.",
-    ],
-    stack: ["Cisco", "VLAN", "DHCP", "OSPF", "Network Security"],
+    summary:
+      "Designed and configured enterprise-scale topologies based on CCNA 1–3 standards, implementing VLAN segmentation, inter-VLAN routing, and automated DHCP addressing.",
+    tags: ["Cisco", "VLAN", "DHCP", "OSPF"],
     links: [
       {
         label: "Report AF_12 ↗",
@@ -172,17 +147,11 @@ export const PROJECTS: ProjectItem[] = [
   {
     title: "VHDL Hotel Management System",
     year: "2025",
-    roleType: "Digital System Design (RTL)",
-    kicker: "Parameterized Finite State Machine in Xilinx Vivado",
+    badge: "Hardware",
     category: "ai-systems",
-    visual: "vhdl-fsm",
-    hoverCaption: "Inspect VHDL Source & Testbench on GitHub",
-    bullets: [
-      "Co-developed a parameterized FSM hardware architecture in VHDL supporting scalable floor and room generics.",
-      "Implemented 16-bit reversed-ID PIN validation, emergency global lock-all, Night Mode auto-lock, and automated Wed/Sat morning housekeeping scheduling.",
-      "Verified functional correctness and timing behavior via RTL synthesis and comprehensive testbench simulation with zero logical defects.",
-    ],
-    stack: ["VHDL", "Xilinx Vivado", "FSM", "RTL Synthesis"],
+    summary:
+      "Parameterized Finite State Machine architecture in VHDL (Xilinx Vivado) with 16-bit PIN validation, Night Mode auto-lock, and automated housekeeping scheduling verified with zero defects.",
+    tags: ["VHDL", "Xilinx Vivado", "FSM", "RTL"],
     links: [
       {
         label: "GitHub Repo ↗",
@@ -193,42 +162,29 @@ export const PROJECTS: ProjectItem[] = [
   {
     title: "Faculty of Dentistry UI — Official Portal",
     year: "2026",
-    roleType: "Full-Stack Web Engineering",
-    kicker: "React.js Frontend & Node.js / PostgreSQL REST Services",
+    badge: "Industry",
     category: "software",
-    visual: "fkg-portal",
-    hoverCaption: "React · Tailwind CSS · Node.js · PostgreSQL",
-    bullets: [
-      "Developed and optimized responsive web interfaces for the faculty's official portal to improve cross-device usability.",
-      "Built backend services and RESTful APIs managing faculty announcements, event registrations, and administrative workflows.",
-    ],
-    stack: ["React.js", "Tailwind CSS", "Node.js", "PostgreSQL"],
+    summary:
+      "Responsive faculty web portal with React.js & Tailwind CSS frontend paired with Node.js and PostgreSQL RESTful services for announcements and event registrations.",
+    tags: ["React.js", "Tailwind CSS", "Node.js", "PostgreSQL"],
   },
   {
     title: "National Networking Competition 4.0 UGM",
     year: "2026",
-    roleType: "National Competition",
-    kicker: "Team Leader — Top 10 Teams Nationally",
+    badge: "Competition",
     category: "networking",
-    visual: "ugm-net",
-    hoverCaption: "9-Hour Cisco Packet Tracer Proof-of-Concept",
-    bullets: [
-      "Led team architecture strategy and hands-on network configuration & troubleshooting in Cisco Packet Tracer during an intensive 9-hour Proof of Concept (PoC) round.",
-    ],
-    stack: ["Cisco Packet Tracer", "Routing & Switching", "Troubleshooting"],
+    summary:
+      "Team Leader finishing Top 10 Nationally after leading topology design, hands-on configuration, and troubleshooting in Cisco Packet Tracer during a 9-hour Proof of Concept round.",
+    tags: ["Top 10 Nationally", "Packet Tracer", "Routing"],
   },
   {
     title: "Fate / Emerald Abyss",
     year: "2025",
-    roleType: "Object-Oriented Programming",
-    kicker: "Turn-Based Java Game Engine & State Progression",
+    badge: "Software",
     category: "software",
-    visual: "game-oop",
-    hoverCaption: "Play Build on itch.io",
-    bullets: [
-      "Co-developed a turn-based Java game implementing core game state management, story progression, settings logic, and visual assets.",
-    ],
-    stack: ["Java", "OOP", "State Management"],
+    summary:
+      "Co-developed a turn-based Java OOP game featuring core game state management, story progression, settings logic, and original visual assets.",
+    tags: ["Java", "OOP", "Game Engine"],
     links: [
       {
         label: "Play on itch.io ↗",
@@ -243,7 +199,7 @@ export const CERTIFICATIONS = [
     title: "CCNA: Switching, Routing, and Wireless Essentials",
     issuer: "Cisco · May 2026",
     detail:
-      "Verified proficiency in VLANs, inter-VLAN routing, spanning tree, DHCP, and wireless networking essentials (WLAN configuration & security).",
+      "Verified proficiency in VLANs, inter-VLAN routing, spanning tree, DHCP, and WLAN configuration and security.",
     href: "https://www.credly.com/badges/1ad573d7-2ec1-4149-aa2c-cb758c7dfb30/linked_in_profile",
   },
   {

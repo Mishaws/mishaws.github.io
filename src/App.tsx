@@ -1,6 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Preloader } from "./components/Preloader";
-import { ProjectVisual } from "./components/ProjectVisual";
 import {
   CERTIFICATIONS,
   EDUCATION_TIMELINE,
@@ -22,11 +21,13 @@ const NAV_ITEMS = [
 ];
 
 const PROJECT_FILTERS: { key: ProjectCategory; label: string }[] = [
-  { key: "all", label: "All Projects" },
+  { key: "all", label: "All" },
   { key: "networking", label: "Networks" },
   { key: "ai-systems", label: "AI & Hardware" },
   { key: "software", label: "Software & Web" },
 ];
+
+const CARD_TILTS = ["-rotate-[0.6deg]", "rotate-[0.6deg]"];
 
 function RevealBlock({
   children,
@@ -73,7 +74,7 @@ export function App() {
     <div className="min-h-screen bg-[var(--bg)] text-[var(--ink)]">
       <Preloader />
 
-      {/* Minimalist sticky header (Karina baseline + clean section navigation) */}
+      {/* Minimalist sticky header */}
       <header className="sticky top-0 z-40 border-b border-[var(--line-soft)] bg-[#f7f5f0]/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
           <a href="#top" className="font-serif text-2xl italic tracking-tight text-[var(--ink)]">
@@ -94,7 +95,7 @@ export function App() {
       </header>
 
       <main id="top" className="paper-grid">
-        {/* 01 // Hero (Karina warm light minimalism, unique copy) */}
+        {/* 01 // About & Hero (Human, conversational intro focused on AI & network infrastructure) */}
         <section
           id="about"
           className="mx-auto max-w-5xl border-b border-[var(--line-soft)] px-6 py-16 md:py-24"
@@ -103,29 +104,28 @@ export function App() {
             <div className="md:col-span-8">
               <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-white px-3.5 py-1 font-mono text-xs text-[var(--ink-dim)]">
                 <span className="h-2 w-2 rounded-full bg-[var(--emerald)]" />
-                Open to research internships &amp; engineering roles
+                Computer Engineering @ Universitas Indonesia
               </div>
 
               <h1 className="font-serif text-5xl leading-[1.02] tracking-tight md:text-7xl">
-                {PROFILE.fullName}
+                Hi, I&apos;m {PROFILE.fullName}
                 <span className="text-[var(--accent)]">.</span>
               </h1>
               <p className="mt-3 font-serif text-2xl italic text-[var(--ink-dim)] md:text-3xl">
-                Building resilient networks &amp; applied AI systems.
+                Exploring artificial intelligence and network infrastructure.
               </p>
 
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--ink-dim)] md:text-lg">
-                Computer Engineering undergraduate at{" "}
-                <strong className="font-semibold text-[var(--ink)]">Universitas Indonesia</strong>{" "}
-                combining{" "}
-                <strong className="font-semibold text-[var(--ink)]">
-                  Cisco/MikroTik network infrastructure
-                </strong>{" "}
-                with{" "}
-                <strong className="font-semibold text-[var(--ink)]">
-                  PyTorch, LLM workflows, and full-stack engineering
-                </strong>
-                . Focused on practical, well-documented systems built for real testbeds.
+                I&apos;m an undergraduate student who genuinely enjoys learning how things stay
+                connected behind the scenes—and how software can make them smarter. Most of my
+                curiosity sits at the intersection of{" "}
+                <strong className="font-semibold text-[var(--ink)]">artificial intelligence</strong>{" "}
+                and{" "}
+                <strong className="font-semibold text-[var(--ink)]">network infrastructure</strong>,
+                because I love seeing how real systems communicate, scale, and adapt. Outside of
+                coursework, I spend my time joining engineering competitions, going on
+                international learning sprints, shipping side projects with friends, and picking up
+                new ideas wherever curiosity takes me.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -139,7 +139,7 @@ export function App() {
                   href="#resume"
                   className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-white px-5 py-2.5 text-sm font-medium text-[var(--ink)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent)] hover:text-[var(--accent)]"
                 >
-                  Scroll to Resume
+                  View Resume
                 </a>
                 <a
                   href={PROFILE.cvPath}
@@ -155,7 +155,7 @@ export function App() {
             <aside className="md:col-span-4">
               <div className="rounded-xl border border-[var(--line)] bg-white p-6 shadow-xs">
                 <p className="font-mono text-[11px] uppercase tracking-widest text-[var(--warm)]">
-                  snapshot
+                  currently
                 </p>
                 <dl className="mt-4 space-y-3 text-sm">
                   <div className="border-b border-[var(--line-soft)] pb-2.5">
@@ -163,8 +163,8 @@ export function App() {
                     <dd className="mt-0.5 font-medium">Universitas Indonesia · GPA {PROFILE.gpa}</dd>
                   </div>
                   <div className="border-b border-[var(--line-soft)] pb-2.5">
-                    <dt className="font-mono text-[11px] text-[var(--ink-faint)]">Focus Areas</dt>
-                    <dd className="mt-0.5 font-medium">{PROFILE.focus}</dd>
+                    <dt className="font-mono text-[11px] text-[var(--ink-faint)]">Main Interests</dt>
+                    <dd className="mt-0.5 font-medium">{PROFILE.interests}</dd>
                   </div>
                   <div className="border-b border-[var(--line-soft)] pb-2.5">
                     <dt className="font-mono text-[11px] text-[var(--ink-faint)]">Location</dt>
@@ -179,7 +179,6 @@ export function App() {
             </aside>
           </div>
 
-          {/* Minimalist 3-stat band */}
           <div className="mt-12 grid gap-4 md:grid-cols-3">
             {HIGHLIGHTS.map((item) => (
               <div
@@ -196,7 +195,7 @@ export function App() {
           </div>
         </section>
 
-        {/* 02 // Resume Timeline (Hellobayu-inspired two-column timeline in light editorial theme) */}
+        {/* 02 // Resume Timeline */}
         <RevealBlock
           id="resume"
           className="mx-auto max-w-5xl border-b border-[var(--line-soft)] px-6 py-16 md:py-20"
@@ -207,11 +206,10 @@ export function App() {
               Experience &amp; <span className="italic text-[var(--accent)]">Education</span>
             </h2>
             <p className="max-w-md text-sm text-[var(--ink-dim)]">
-              Academic trajectory, engineering internships, and international research sprints.
+              Academic journey, engineering internships, and international programs.
             </p>
           </div>
 
-          {/* Work & International Programs Timeline */}
           <div className="mt-10 rounded-2xl border border-[var(--line)] bg-white p-6 md:p-10">
             <h3 className="mb-8 font-mono text-xs font-semibold uppercase tracking-widest text-[var(--accent)]">
               Experience &amp; International Programs
@@ -252,7 +250,6 @@ export function App() {
             </div>
           </div>
 
-          {/* Education Timeline */}
           <div className="mt-6 rounded-2xl border border-[var(--line)] bg-white p-6 md:p-10">
             <h3 className="mb-8 font-mono text-xs font-semibold uppercase tracking-widest text-[var(--warm)]">
               Education
@@ -284,7 +281,7 @@ export function App() {
           </div>
         </RevealBlock>
 
-        {/* 03 // Projects (Hanifaufa row layout in light paper theme + Cheryllao animated hover embeds) */}
+        {/* 03 // Projects (Photo-1 framed editorial cards, NO emojis, subtle hover motion) */}
         <RevealBlock
           id="projects"
           className="mx-auto max-w-5xl border-b border-[var(--line-soft)] px-6 py-16 md:py-20"
@@ -296,8 +293,7 @@ export function App() {
                 Selected <span className="italic text-[var(--accent)]">Work</span>
               </h2>
               <p className="mt-2 max-w-xl text-sm text-[var(--ink-dim)]">
-                Competitions, hardware/AI builds, network topologies, and software systems. Hover
-                each embed card to inspect details or open source artifacts.
+                Competitions, hardware/AI builds, network topologies, and software systems.
               </p>
             </div>
 
@@ -322,99 +318,62 @@ export function App() {
             </div>
           </div>
 
-          <div className="mt-8 space-y-5">
-            {visibleProjects.map((project) => {
-              const primaryLink = project.links?.[0];
-              return (
-                <article
-                  key={project.title}
-                  className="project-row grid gap-6 p-6 md:grid-cols-12 md:p-7"
-                >
-                  {/* Left metadata + bullets (Hanifaufa structure) */}
-                  <div className="flex flex-col justify-between md:col-span-8">
-                    <div>
-                      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                        <span className="font-mono text-lg font-bold text-[var(--accent)]">
-                          {project.year}
-                        </span>
-                        <span className="font-mono text-xs text-[var(--ink-faint)]">
-                          // {project.roleType}
-                        </span>
-                      </div>
-
-                      <h3 className="mt-2 text-xl font-semibold tracking-tight text-[var(--ink)]">
-                        {project.title}
-                      </h3>
-                      <p className="mt-1 font-mono text-xs text-[var(--warm)]">{project.kicker}</p>
-
-                      <ul className="mt-4 space-y-2 text-sm leading-relaxed text-[var(--ink-dim)]">
-                        {project.bullets.map((bullet) => (
-                          <li key={bullet} className="flex gap-2.5">
-                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
-                            <span>{bullet}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-[var(--line-soft)] pt-4">
-                      <div className="flex flex-wrap gap-1.5">
-                        {project.stack.map((tech) => (
-                          <span
-                            key={tech}
-                            className="rounded border border-[var(--line)] bg-[var(--bg)] px-2.5 py-0.5 font-mono text-[11px] text-[var(--ink-dim)]"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-
-                      {project.links && project.links.length > 0 && (
-                        <div className="flex flex-wrap gap-2">
-                          {project.links.map((link) => (
-                            <a
-                              key={link.href}
-                              href={link.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="rounded border border-[var(--line)] bg-white px-2.5 py-1 font-mono text-xs font-medium text-[var(--accent)] transition-colors hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]"
-                            >
-                              {link.label}
-                            </a>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {visibleProjects.map((project, idx) => (
+              <article
+                key={project.title}
+                className={`embed-card flex h-full flex-col justify-between p-7 ${
+                  CARD_TILTS[idx % CARD_TILTS.length]
+                }`}
+              >
+                <div>
+                  <div className="mb-5 flex items-center justify-between gap-3">
+                    <span className="font-mono text-xs font-medium text-[var(--ink-faint)]">
+                      {project.year}
+                    </span>
+                    <span className="inline-flex items-center rounded-full border-2 border-[var(--ink)] bg-[var(--emerald)] px-3 py-0.5 font-mono text-[10px] font-medium uppercase tracking-widest text-white">
+                      {project.badge}
+                    </span>
                   </div>
 
-                  {/* Right visual embed with Cheryllao hover zoom & glass overlay */}
-                  <div className="md:col-span-4">
-                    <div className="embed-frame h-44 w-full md:h-full md:min-h-[180px]">
-                      <ProjectVisual type={project.visual} label={project.title} />
-                      <div className="embed-overlay">
-                        <span className="embed-overlay-pill font-mono text-[11px] font-medium text-[var(--ink)]">
-                          {project.hoverCaption}
-                        </span>
-                        {primaryLink ? (
-                          <a
-                            href={primaryLink.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="embed-overlay-pill mt-1 inline-flex items-center gap-1 rounded-full bg-[var(--ink)] px-3.5 py-1.5 font-mono text-xs text-white transition-colors hover:bg-[var(--accent)]"
-                          >
-                            {primaryLink.label}
-                          </a>
-                        ) : (
-                          <span className="embed-overlay-pill mt-1 inline-flex rounded-full border border-[var(--line)] bg-white px-3 py-1 font-mono text-[11px] text-[var(--ink-dim)]">
-                            {project.year} · {project.roleType}
-                          </span>
-                        )}
-                      </div>
-                    </div>
+                  <h3 className="font-serif text-3xl leading-tight text-[var(--ink)]">
+                    {project.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--ink-dim)]">
+                    {project.summary}
+                  </p>
+                </div>
+
+                <div className="mt-6">
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-[var(--line)] bg-[var(--bg)] px-3 py-0.5 font-mono text-[10px] uppercase tracking-wider text-[var(--ink-dim)]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
-                </article>
-              );
-            })}
+
+                  {project.links && project.links.length > 0 && (
+                    <div className="embed-action mt-5 flex flex-wrap gap-3 border-t border-[var(--line-soft)] pt-4">
+                      {project.links.map((link) => (
+                        <a
+                          key={link.href}
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 font-mono text-xs font-medium text-[var(--accent)] hover:underline"
+                        >
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </article>
+            ))}
           </div>
         </RevealBlock>
 
@@ -543,16 +502,15 @@ export function App() {
               Let&apos;s <span className="italic text-[var(--accent)]">connect</span>.
             </h2>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-[var(--ink-dim)] md:text-base">
-              Open to research internships, networking or AI collaborations, and software
-              engineering roles. Feel free to reach out in English or Bahasa Indonesia.
+              Open to research internships, AI or networking collaborations, and software
+              engineering opportunities. Feel free to reach out in English or Bahasa Indonesia.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a
                 href={`mailto:${PROFILE.email}`}
                 className="inline-flex items-center gap-2 rounded-lg bg-[var(--ink)] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[var(--accent)]"
               >
-                <span className="font-mono">✉</span>
-                {PROFILE.email}
+                Email: {PROFILE.email}
               </a>
               <a
                 href={PROFILE.github}
@@ -584,4 +542,5 @@ export function App() {
     </div>
   );
 }
+
 export default App;

@@ -9,8 +9,8 @@
 :root {
   --bg: #f7f5f0;
   --bg-alt: #efebe2;
-  --bg-card: #ffffff;
-  --hover-bg: #f1ede4;
+  --bg-card: #fffdf9;
+  --hover-bg: #f3efe6;
   --line: #dcd6c9;
   --line-soft: #e8e3d8;
   --ink: #1e2530;
@@ -20,7 +20,7 @@
   --accent-soft: #e3f0f7;
   --warm: #c1600f;
   --warm-soft: #f7e6d4;
-  --emerald: #2f7a48;
+  --emerald: #227a4d;
 }
 
 * {
@@ -97,7 +97,7 @@ body {
   }
 }
 
-/* --- Section Eyebrow Tag (Hanifaufa-inspired in light editorial style) --- */
+/* --- Section Eyebrow Tag --- */
 .section-tag {
   display: inline-flex;
   align-items: center;
@@ -214,88 +214,36 @@ body {
   }
 }
 
-/* --- Project Row (Hanifaufa-inspired layout in warm light palette) --- */
-.project-row {
+/* --- Photo-1 Framed Embed Card + Smooth Cheryllao Hover Motion --- */
+.embed-card {
   position: relative;
   background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: 14px;
+  border: 2px solid var(--ink);
+  border-radius: 18px;
+  box-shadow: 4px 4px 0 0 var(--ink);
   transition:
-    background-color 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    transform 0.25s ease;
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.25s ease;
 }
 
-.project-row::before {
-  content: "";
-  position: absolute;
-  inset-block: 14px;
-  left: 0;
-  width: 3px;
-  border-radius: 0 3px 3px 0;
-  background: var(--warm);
-  opacity: 0;
-  transition: opacity 0.25s ease;
+.embed-card:hover {
+  transform: translate(-2px, -4px) rotate(0deg);
+  box-shadow: 7px 7px 0 0 var(--ink);
+  background: #ffffff;
 }
 
-.project-row:hover {
-  background: var(--bg-card);
-  border-color: #c8c0b0;
-  box-shadow: 0 12px 30px -12px rgba(30, 37, 48, 0.1);
+.embed-action {
+  opacity: 0.72;
+  transform: translateY(2px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
-.project-row:hover::before {
+.embed-card:hover .embed-action {
   opacity: 1;
-}
-
-/* --- Cheryllao-inspired Hover Embed Zoom & Reveal Overlay --- */
-.embed-frame {
-  position: relative;
-  overflow: hidden;
-  border-radius: 10px;
-  border: 1px solid var(--line);
-  background: var(--bg);
-}
-
-.embed-visual {
-  width: 100%;
-  height: 100%;
-  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease;
-}
-
-.project-row:hover .embed-visual,
-.embed-frame:hover .embed-visual {
-  transform: scale(1.07);
-}
-
-.embed-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 16px;
-  text-align: center;
-  background: rgba(247, 245, 240, 0.86);
-  backdrop-filter: blur(4px);
-  opacity: 0;
-  transition: opacity 0.35s ease;
-}
-
-.project-row:hover .embed-overlay,
-.embed-frame:hover .embed-overlay {
-  opacity: 1;
-}
-
-.embed-overlay-pill {
-  transform: translateY(8px);
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.project-row:hover .embed-overlay-pill,
-.embed-frame:hover .embed-overlay-pill {
   transform: translateY(0);
 }
