@@ -46,7 +46,7 @@ export const PROFILE = {
   email: "chirstianmichael023@gmail.com",
   github: "https://github.com/Mishaws",
   linkedin: "https://www.linkedin.com/in/michael-christian-98037a309",
-  cvPath: "/cv/CV_Michael_2026.pdf",
+  cvPath: "/cv/CV_ATS_Michael_2026-3.pdf",
 };
 
 export const EXPERIENCE_TIMELINE: TimelineEntry[] = [
@@ -55,10 +55,10 @@ export const EXPERIENCE_TIMELINE: TimelineEntry[] = [
     period: "Aug 2026 – Present",
     title: "Website Development Intern",
     summary:
-      "Building and maintaining the faculty's official portal across responsive frontend views and database-backed REST APIs.",
+      "Developing responsive web interfaces and database-backed RESTful APIs for the faculty's official portal.",
     bullets: [
-      "Developed responsive web interfaces using React.js and Tailwind CSS for cross-device usability.",
-      "Built backend services with Node.js and PostgreSQL for announcements, event registrations, and administrative workflows.",
+      "Developed and optimized responsive interfaces using React.js and Tailwind CSS, improving cross-device accessibility and user experience.",
+      "Engineered backend services and RESTful APIs with Node.js and PostgreSQL to streamline announcements, event registrations, and administrative data.",
     ],
   },
   {
@@ -80,7 +80,21 @@ export const EXPERIENCE_TIMELINE: TimelineEntry[] = [
     period: "Sep – Dec 2025",
     title: "Student Assistant — Introduction to Engineering Design",
     summary:
-      "Mentored undergraduate teams on engineering design fundamentals and coordinated exhibition layout and scheduling.",
+      "Mentored undergraduate students on engineering design concepts and coordinated layout and scheduling for the final project exhibition.",
+  },
+  {
+    organization: "PT Jakarta International Expo (JIEXPO)",
+    period: "Jun – Jul 2024",
+    title: "Event Crew — Revenue Sharing Cashier",
+    summary:
+      "Executed financial transactions for Jakarta Fair 2024 covering stakeholder revenue-sharing distribution and high-precision daily sales reporting.",
+  },
+  {
+    organization: "KPKNL Jakarta I",
+    period: "Jan – Mar 2023",
+    title: "Management Intern",
+    summary:
+      "Streamlined administrative correspondence workflows, built Excel-based inbound letter tracking databases, and maintained department archive integrity.",
   },
 ];
 
