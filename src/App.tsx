@@ -16,7 +16,6 @@ import {
   EXPERIENCE_TIMELINE,
   PROFILE,
   PROJECTS,
-  SKILLS,
   type ProjectCategory,
 } from "./data/portfolio";
 
@@ -53,6 +52,7 @@ const PROTOCOL_STRIP = [
 
 function getProjectIcon(badge: string) {
   switch (badge) {
+    case "Network":
     case "Networks":
       return <IconNetwork className="h-3.5 w-3.5" />;
     case "Competition":
@@ -65,12 +65,6 @@ function getProjectIcon(badge: string) {
     default:
       return <IconTerminal className="h-3.5 w-3.5" />;
   }
-}
-
-function getSkillIcon(group: string) {
-  if (group === "Networking") return <IconNetwork className="h-4 w-4 text-[var(--navy)]" />;
-  if (group.includes("Hardware")) return <IconAiChip className="h-4 w-4 text-[var(--navy)]" />;
-  return <IconTerminal className="h-4 w-4 text-[var(--navy)]" />;
 }
 
 function RevealBlock({
@@ -393,41 +387,20 @@ export function App() {
           </div>
         </RevealBlock>
 
-        {/* 04 // Sliding Certificates Carousel & Technical Toolkit */}
+        {/* 04 // Sliding Certificates Carousel */}
         <RevealBlock
           id="credentials"
           className="mx-auto max-w-5xl border-b-2 border-[var(--ink)] px-6 py-16 md:py-20"
         >
-          <div className="section-tag">04 // credentials &amp; toolkit</div>
+          <div className="section-tag">04 // credentials</div>
           <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
-            Certificates &amp; <span className="text-[var(--blue-name)]">Skills</span>
+            Verified <span className="text-[var(--blue-name)]">Certificates</span>
           </h2>
           <p className="mt-2 max-w-xl text-sm font-medium text-[var(--ink-dim)]">
-            Verified networking credentials and core technical stack.
+            Industry networking credentials and national competency certifications.
           </p>
 
           <CertificateCarousel />
-
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {SKILLS.map((group) => (
-              <div key={group.group} className="brutal-box p-5">
-                <p className="flex items-center gap-2 border-b-2 border-[var(--ink)] pb-2.5 font-mono text-xs font-bold uppercase tracking-wider text-[var(--navy)]">
-                  {getSkillIcon(group.group)}
-                  {group.group}
-                </p>
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {group.items.map((item) => (
-                    <span
-                      key={item}
-                      className="border border-[var(--ink)] bg-[var(--bg)] px-2.5 py-1 font-mono text-[11px] font-medium text-[var(--ink)]"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
         </RevealBlock>
 
         {/* 05 // Curriculum Vitae */}

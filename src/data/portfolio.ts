@@ -108,8 +108,29 @@ export const PROJECTS: ProjectItem[] = [
     badge: "AI & ML",
     category: "ai-systems",
     summary:
-      "Ranked 5th in Qualification ('Noisy Weather Outside', 0.9477 Macro F1 via EfficientNet-V2-S, 5-Fold CV & TTA) and 12th in Main Stage ('3D Mesh Quality Control' defect detection).",
-    tags: ["PyTorch", "EfficientNet-V2-S", "5-Fold CV", "3D ML"],
+      "Ranked 5th in Qualification ('Noisy Weather Outside', 0.9477 Macro F1 via EfficientNet-V2-S, 5-Fold CV & 10-pass TTA) and 12th in Main Stage ('3D Mesh Quality Control', 13.711/20.0 via 512×768 EfficientNetV2 on 6-view normal renders & deterministic quality rules).",
+    tags: ["PyTorch", "EfficientNetV2", "5-Fold CV", "6-View 3D QC"],
+    links: [
+      {
+        label: "GitHub Repo ↗",
+        href: "https://github.com/Mishaws/sber-ai-challenge-2026",
+      },
+    ],
+  },
+  {
+    title: "Premier League Multi-Site Network Infrastructure",
+    year: "2026",
+    badge: "Network",
+    category: "networking",
+    summary:
+      "Architected and simulated a 6-site enterprise network (HQ, VAR Central, and 4 stadiums) in Cisco Packet Tracer with Frame Relay WAN, Hybrid EIGRP–OSPF redistribution, LACP EtherChannel, HSRP gateway redundancy, GRE tunneling, ACLs, and Syslog/SNMP/NetFlow monitoring.",
+    tags: ["Packet Tracer", "Hybrid Routing", "HSRP / LACP", "GRE & ACL"],
+    links: [
+      {
+        label: "Project Report PDF ↗",
+        href: "/reports/project-jaringan.pdf",
+      },
+    ],
   },
   {
     title: "Enterprise Network Architecture (CCNA 1–3)",
@@ -157,7 +178,7 @@ export const PROJECTS: ProjectItem[] = [
   {
     title: "National Networking Competition 4.0 UGM",
     year: "2026",
-    badge: "Competition",
+    badge: "Network",
     category: "networking",
     summary:
       "Team Leader finishing Top 10 Nationally after leading topology design, hands-on configuration, and troubleshooting in Cisco Packet Tracer during a 9-hour Proof of Concept round.",
@@ -201,6 +222,7 @@ export const CERTIFICATES: CertificateItem[] = [
       "Foundational networking architecture covering OSI/TCP-IP models, IPv4/IPv6 subnetting, Ethernet switching, and router configuration.",
     imageSrc: "/certificates/ccna-itn.png",
     documentSrc: "/certificates/ccna-itn.pdf",
+    verifyHref: "https://www.credly.com/badges/1652220b-29c9-4d7d-999c-f2a5c499ece2/linked_in_profile",
   },
   {
     title: "Junior Network Administrator (BNSP)",
@@ -211,20 +233,5 @@ export const CERTIFICATES: CertificateItem[] = [
       "National professional competency certification in Computer Network Engineering covering routing protocols, switching, and network troubleshooting.",
     imageSrc: "/certificates/bnsp-jna.png",
     documentSrc: "/certificates/bnsp-jna.png",
-  },
-];
-
-export const SKILLS = [
-  {
-    group: "Networking",
-    items: ["Cisco", "MikroTik", "WLAN (TP-Link)", "OSPF", "VLAN", "DHCP", "TCP/IP", "Network Security"],
-  },
-  {
-    group: "Programming & Hardware",
-    items: ["Python", "C", "C++", "Java", "VHDL (Xilinx Vivado)", "HTML / CSS", "SQL (PostgreSQL)"],
-  },
-  {
-    group: "AI, Software & Tools",
-    items: ["PyTorch / EfficientNet", "LLMs (Prompt & API)", "React.js", "Tailwind CSS", "Node.js", "Git", "Figma"],
   },
 ];
